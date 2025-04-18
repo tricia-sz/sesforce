@@ -3,7 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FiLoader, FiLock, FiLogOut, FiUser } from "react-icons/fi";
-import logo from "../../public/logoinversa.svg";
+import logo from "../../public/logo1.svg";
 
 export default function Header() {
   const { status, data } = useSession();
