@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FiLoader, FiLock, FiLogOut, FiUser } from "react-icons/fi";
 import logo from "../../public/ultimalogo.svg"
 import shapetop from "../../public/shape3.svg"
-export default function Header() {
+export default function Footer() {
   const { status, data } = useSession();
 
   async function handleLogin() {
@@ -20,9 +20,10 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full flex items-center px-2 py-4 bg-sky-500  shadow-sm">
+      <Image alt="shape" src={shapetop}  className="w-full rotate-180 "/>
+      <header className="w-full flex items-center px-2  bg-sky-500  shadow-sm">
         <div className="w-full flex items-center justify-between max-w-7xl mx-auto">
-          <Link href={"/"}>
+          {/* <Link href={"/"}>
             <Image
               alt="logo"
               src={logo}
@@ -55,12 +56,12 @@ export default function Header() {
                 </Link>
               </button>
             </div>
-          )}
+          )} */}
 
 
         </div>
       </header>
-      <Image alt="shape" src={shapetop}  className="w-full"/>
+      
     </>
   )
 }

@@ -3,7 +3,7 @@ import { FaRegFileAlt, FaTrashAlt } from "react-icons/fa";
 export default function TicketItem(){
   return(
     <>
-      <tr className="border-b-2 border-b-slate-200 h-16 last:border-0 bg-slate-100 hover:bg-slate-200 duration-300">
+      <tr className="border-b-2 border-b-sky-100 h-16 last:border-0 bg-sky-200 hover:bg-sky-300 duration-300">
         <td className="text-left pl-2">
           Mercado 
         </td>
