@@ -1,4 +1,4 @@
-import { DeashboardHeader } from "./components/header";
+import { DeashboardHeader } from "./components/header/header";
 
 export default function DashboardLayout({children}: {children: React.ReactNode}) {
   return (
