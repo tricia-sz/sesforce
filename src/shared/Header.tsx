@@ -1,10 +1,9 @@
 "use client"
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../public/logoinversa.svg"
 import { FiLoader, FiLock, FiLogOut, FiUser } from "react-icons/fi";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { IoMdLogOut } from "react-icons/io";
+import logo from "../../public/logoinversa.svg";
 
 export default function Header() {
   const { status, data } = useSession();
