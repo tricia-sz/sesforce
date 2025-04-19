@@ -26,7 +26,7 @@ export default async function Dashboard() {
         <table className="min-w-full my-2">
           <thead className="">
             <th className="font-bold text-left p-1">CLIENTE</th>
-            <th className="font-bold text-left hidden sm:block">DATA CADASTRO</th>
+            <th className="font-bold text-left hidden sm:table-cell">DATA CADASTRO</th>
             <th className="font-bold text-left">STATUS</th>
             <th className="font-bold text-left">#</th>
           </thead>
