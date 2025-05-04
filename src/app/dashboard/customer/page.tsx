@@ -3,10 +3,8 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import CardCustomer from "./components/card/cardCustomer";
-import { IoIosPersonAdd } from "react-icons/io";
-import { IoPersonAddSharp } from "react-icons/io5";
 import { MdPersonAddAlt1 } from "react-icons/md";
+import CardCustomer from "./components/card/cardCustomer";
 
 export default async function Customer(){
     const session = await getServerSession(authOptions)

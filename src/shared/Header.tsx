@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FiLoader, FiLock, FiLogOut, FiUser } from "react-icons/fi";
 import logo from "../../public/ultimalogo.svg"
 import shapetop from "../../public/shape3.svg"
+
 export default function Header() {
   const { status, data } = useSession();
 
