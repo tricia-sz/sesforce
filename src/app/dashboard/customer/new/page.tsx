@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { IoMdArrowBack } from "react-icons/io";
-import { NewCustomerForm } from "../form/form";
+import { NewCustomerForm } from "../form";
 
 export default async function NewCustomer(){
   const session = await getServerSession(authOptions)
@@ -22,7 +22,7 @@ export default async function NewCustomer(){
         </Link>
         <h1 className="text-3xl font-bold ml-8 ">Novo Cliente</h1>
       </div>
-        <NewCustomerForm />
+        <NewCustomerForm userId={session.user.id} />
      </main>
     </Container>
   )
