@@ -4,9 +4,9 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { MdPersonAddAlt1 } from "react-icons/md";
-import CardCustomer from "./components/card/cardCustomer";
 
 import prismaClient from "@/lib/prisma"
+import CardCustomer from "./components/card";
 
 export default async function Customer(){
     const session = await getServerSession(authOptions)
@@ -16,7 +16,7 @@ export default async function Customer(){
 
     const customers = await prismaClient.customer.findMany({
       where: {
-        userId: session.user.id
+        userId: session.user.id 
       }
     })
 
@@ -41,6 +41,10 @@ export default async function Customer(){
             ))
           }
         </section>
+
+        {customers.length === 0 && (
+          <h1 className="text-2xl text-center">Você ainda não possui clientes</h1>
+        )}
       </main>
     </Container>
   )
