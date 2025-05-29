@@ -40,6 +40,7 @@ export function NewCustomerForm({userId}: {userId: string}) {
 
     })
 
+    router.refresh();
     router.replace("/dashboard/customer")
   }
 
