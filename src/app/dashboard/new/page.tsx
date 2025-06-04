@@ -1,9 +1,23 @@
 
 import { Container } from '@/components/Contianer'
+import { authOptions } from '@/lib/auth'
+import { getServerSession } from 'next-auth'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { IoMdArrowBack } from 'react-icons/io'
 
-export default function NewTicket() {
+import  prismaClient  from '@/lib/prisma'
+
+export default async function NewTicket() {
+   const session = await getServerSession(authOptions)
+        if(!session || !session.user) {
+          redirect("/")
+        }
+    const customers = await prismaClient.customer.findMany({
+      where: {
+        userId: session.user?.id
+      }
+    })
   return (
     <Container>
       <main className="mt-9 mb-2">
@@ -31,15 +45,42 @@ export default function NewTicket() {
             required
           ></textarea>
 
-          <label className="mb-2 font-medium text-lg rounded-full">Selecione o cliente</label>
-          <select
-            className="w-full border-2 border-sky-400  rounded-full px-4 mb-2 h-11 resize-none"
-          >
-            <option className='rounded-full bg-sky-100' value="cliente1">Cliente 1</option>
-            <option className='rounded-full bg-sky-100' value="cliente1">Cliente 1</option>
-            <option className='rounded-full bg-sky-100' value="cliente1">Cliente 1</option>
-            <option className='rounded-full bg-sky-100' value="cliente1">Cliente 1</option>
-          </select>
+          {
+            customers.length !== 0 && (
+              <>
+                <label className="mb-2 font-medium text-lg rounded-full">Selecione o cliente</label>
+                <select
+                  className="w-full border-2 border-sky-400  rounded-full px-4 mb-2 h-11 resize-none"
+                >
+                  {
+                    customers.map(customer => (
+                      <option
+                        key={customer.id} 
+                        className='rounded-full bg-sky-100' 
+                        value={customer.id}>
+                          {customer.name}
+                      </option>
+                    ))
+                  }
+                </select>
+              </>
+            )
+          }
+
+          {customers.length === 0 && (
+          <Link href="/dashboard/customer/new"
+            className="text-xl text-center mt-4 text-sky-600">
+              Você ainda não possui clientes, <span className='text-sky-950 font-bold'>Cadastrar cliente</span>
+          </Link>
+        )}
+
+        <button 
+          type='submit'
+          className='py-2 w-64 bg-sky-500 font-bold text-2xl text-white rounded-full disabled:bg-gray-500 disabled:cursor-not-allowed items-center text-center self-center mt-6'
+          disabled={customers.length === 0}
+        >
+          Cadastrar
+        </button>
         </form>
 
       </main>
