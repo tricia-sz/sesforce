@@ -6,12 +6,27 @@ import { redirect } from "next/navigation";
 import { FaTicketAlt } from "react-icons/fa";
 import TicketItem from "./components/ticket/ticket";
 
+import prismaCliente from "@/lib/prisma"
+
 export default async function Dashboard() {
   const session = await getServerSession(authOptions)
 
   if (!session || !session.user) {
     redirect("/")
   }
+
+  const tickets = await prismaCliente.ticket.findMany({
+    where: {
+      userId: session.user?.id,
+      status: "ABERTO"
+    },
+    include: {
+      customer: true
+    }
+  })
+
+  console.log(tickets);
+  
 
   return (
     <Container>
@@ -30,8 +45,14 @@ export default async function Dashboard() {
             <th className="font-bold text-left">STATUS</th>
             <th className="font-bold text-left">#</th>
           </thead>
-          <tbody className="">
-            <TicketItem />
+          <tbody>
+            {tickets.map(ticket => (
+              <TicketItem 
+                key={ticket.id}
+                customer={ticket.customer}
+                ticket={ticket}
+              />
+            ))}
           </tbody>
 
         </table>
