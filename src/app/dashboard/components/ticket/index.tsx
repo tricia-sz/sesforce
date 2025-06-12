@@ -6,6 +6,8 @@ import { RiCheckboxLine } from "react-icons/ri";
 
 import { api } from "@/lib/api";
 import { useRouter } from 'next/navigation'
+import { useContext } from "react";
+import { ModalContext } from "@/providers/modal";
 
 interface TicketItemProps {
   ticket: TicketProps;
@@ -13,6 +15,8 @@ interface TicketItemProps {
 }
 export function TicketItem({ customer, ticket }: TicketItemProps) {
   const router = useRouter();
+
+  const {handleModalVisible} = useContext(ModalContext)
 
   async function handleChangeStatus() {
     try {
@@ -27,6 +31,9 @@ export function TicketItem({ customer, ticket }: TicketItemProps) {
     }
   }
 
+  function handleOpenModal(){
+    handleModalVisible()
+  }
 
   return(
     <>
@@ -47,7 +54,7 @@ export function TicketItem({ customer, ticket }: TicketItemProps) {
           >
             <RiCheckboxLine size={24} className="text-sky-800" />
           </button>
-          <button>
+          <button onClick={handleOpenModal}>
             <FaRegFileAlt size={24} className="text-sky-600" />
           </button>
         </td>
