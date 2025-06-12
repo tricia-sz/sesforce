@@ -1,13 +1,32 @@
+"use client"
 import { CustomerProps } from "@/utils/customer.type";
 import { TicketProps } from "@/utils/ticket.type";
-import { FaRegFileAlt, FaTrashAlt } from "react-icons/fa";
+import { FaRegFileAlt } from "react-icons/fa";
+import { RiCheckboxLine } from "react-icons/ri";
+
+import { api } from "@/lib/api";
+import { useRouter } from 'next/navigation'
 
 interface TicketItemProps {
   ticket: TicketProps;
   customer: CustomerProps | null;
 }
+export function TicketItem({ customer, ticket }: TicketItemProps) {
+  const router = useRouter();
 
-export default function TicketItem({ customer, ticket }: TicketItemProps){
+  async function handleChangeStatus() {
+    try {
+      const response = await api.patch("/api/ticket", {
+        id: ticket.id,
+      })
+
+      router.refresh();
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
 
   return(
     <>
@@ -22,14 +41,18 @@ export default function TicketItem({ customer, ticket }: TicketItemProps){
           <span className="bg-green-500 px-2  rounded-full">{ticket.status}</span>
         </td>
         <td className="text-left">
-          <button className="mr-2">
-            <FaTrashAlt size={24} className="text-red-600" />
+          <button 
+            className="mr-2"
+            onClick={handleChangeStatus}
+          >
+            <RiCheckboxLine size={24} className="text-sky-800" />
           </button>
           <button>
-            <FaRegFileAlt size={24} className="text-sky-800" />
+            <FaRegFileAlt size={24} className="text-sky-600" />
           </button>
         </td>
       </tr>
     </>
   )
 }
+

@@ -4,9 +4,9 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FaTicketAlt } from "react-icons/fa";
-import TicketItem from "./components/ticket/ticket";
 
 import prismaCliente from "@/lib/prisma"
+import { TicketItem } from "./components/ticket";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions)
@@ -56,6 +56,10 @@ export default async function Dashboard() {
           </tbody>
 
         </table>
+        {tickets.length === 0 && (
+          <h1 className="px-2 text-gray-600">Nenhum ticket aberto foi encontrado...</h1>
+        )}
+
       </main>
     </Container>
   )
