@@ -22,6 +22,9 @@ export default async function Dashboard() {
     },
     include: {
       customer: true
+    },
+    orderBy: {
+      created_at: "asc"
     }
   })
 
@@ -30,7 +33,7 @@ export default async function Dashboard() {
 
   return (
     <Container>
-      <main className="mt-9 mb-2">
+      <main className="mt-9 mb-28">
         <div className="flex items-center justify-between  py-4 mb-8">
           <h1 className="text-3xl font-bold">Chamados</h1>
           <Link href="/dashboard/new" className="bg-sky-500 px-4 py-2 rounded-full text-sky-950 font-medium flex gap-2">

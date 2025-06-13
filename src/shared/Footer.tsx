@@ -1,67 +1,37 @@
 "use client"
-import { signIn, signOut, useSession } from "next-auth/react";
-import Image from "next/image";
-import Link from "next/link";
-import { FiLoader, FiLock, FiLogOut, FiUser } from "react-icons/fi";
+import Image from "next/image"
+import Link from "next/link"
+import { FaHeart } from "react-icons/fa"
 import logo from "../../public/ultimalogo.svg"
-import shapetop from "../../public/shape3.svg"
+import waveBottom from "../../public/shape3.svg"
+import { Container } from "@/components/Contianer"
+
 export default function Footer() {
-  const { status, data } = useSession();
-
-  async function handleLogin() {
-    await signIn();
-
-  }
-
-  async function handleLogout() {
-    await signOut();
-
-  }
-
-  return (
-    <>
-      <Image alt="shape" src={shapetop}  className="w-full rotate-180 "/>
-      <header className="w-full flex items-center px-2  bg-sky-500  shadow-sm">
-        <div className="w-full flex items-center justify-between max-w-7xl mx-auto">
-          {/* <Link href={"/"}>
-            <Image
-              alt="logo"
-              src={logo}
-              width={200}
-              className=""
-            />
-          </Link>
-
-          {status === "loading" && (
-            <button className="animate-spin">
-              <FiLoader size={26} className="text-sky-950" />
-            </button>
-          )}
-
-          {status === "unauthenticated" && (
-            <button onClick={handleLogin}>
-              <FiLock size={26} className="text-sky-950" />
-            </button>
-          )}
-
-          {status === "authenticated" && (
-            <div className="flex items-baseline gap-4">
-              <Link href={"/dashboard"}>
-                <FiUser size={28} className="text-sky-950" />
-              </Link>
-
-              <button onClick={handleLogout}>
-                <Link href={""}>
-                  <FiLogOut size={26} className="text-white" />
+    return (
+       <>
+            
+        {/* <Image src={waveBottom} className="w-full rotate-180" alt="waveTop"/> */}
+         <footer className="bg-sky-500 justify-center items-center py-8">
+         <div className='flex justify-center mb-4 '>
+            <Link href="/" className="">
+                <Image alt="logo" src={logo} className="h-24"  />
+             </Link>
+         </div>
+            <Container>
+                
+                
+                <Link href={`https://tricia-sz.netlify.app/`} target="blank" rel="external" className="">
+                  <span className="text-md text-sky-950 bg-Inc-950  font-medium  w-full flex items-center justify-center tracking-wide hover:text-white cursor-pointer ">
+                    Developed by Parícia Souza{" "}
+                    <span className="text-sky-950 px-2">
+                        <FaHeart size={24} color="" />
+                    </span>{" "}
+                    2025
+                  </span>
                 </Link>
-              </button>
-            </div>
-          )} */}
+            </Container>
 
-
-        </div>
-      </header>
-      
-    </>
-  )
+        </footer>
+       </>
+    )
 }

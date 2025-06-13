@@ -35,7 +35,7 @@ export default function RootLayout({
           <ModalProvider>
             <Header />
              {children}
-            {/* <Footer /> */}
+            <Footer />
           </ModalProvider>
         </AuthProvider>
          
