@@ -8,6 +8,9 @@ import { FiSearch, FiX } from 'react-icons/fi'
 import { FormTicket } from './components/FormTicket'
 import { Input } from '@/components/Input'
 
+import {api} from "@/lib/api"
+import { IoIosCloseCircle } from 'react-icons/io'
+
 const schema = z.object({
   email: z.string().email("Digite o email do cliente para localizar.").min(1, "O campo email é obrigatório.")
 })
@@ -22,7 +25,7 @@ interface CustomerDataInfo {
 export default function OpenTicket() {
   const [customer, setCustomer] = useState<CustomerDataInfo | null>(null)
 
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, setValue, setError, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema)
   })
 
@@ -32,7 +35,25 @@ export default function OpenTicket() {
   }
 
 
-   
+  async function handleSearchCustomer(data: FormData) {
+    const response = await api.get("/api/customer", {
+      params: {
+        email: data.email
+      }
+    })
+
+    if (response.data === null) {
+      setError("email", { type: "custom", message: "Ops, cliente não foi encontrado. O mesmo não está cadastrado em nossa base!" })
+      return;
+    }
+
+    setCustomer({
+      id: response.data.id,
+      name: response.data.name
+    })
+
+  }
+
 
   return (
     <div className="w-full max-w-2xl mx-auto px-2 ">
@@ -41,14 +62,17 @@ export default function OpenTicket() {
       <main className="flex flex-col mt-4 mb-2">
 
         {customer ? (
-          <div className="bg-sky-200 py-6 px-4 rounded border-2 flex items-center justify-between">
+          <div className="bg-sky-200 py-6 px-4 rounded-2xl border-2 border-sky-400  flex items-center justify-between">
             <p className="text-lg"><strong>Cliente selecionado:</strong> {customer.name}</p>
             <button className="h-11 px-2 flex items-center justify-center rounded" onClick={handleClearCustomer}>
-              <FiX size={30} color="#ff2929" />
+               <IoIosCloseCircle className='text-red-600' size={34}/>
             </button>
           </div>
         ) : (
-          <form className="bg-sky-50 py-6 px-2 rounded-2xl border-3 border-sky-300 mb-28">
+          <form 
+            className="bg-sky-50 py-6 px-2 rounded-2xl border-3 border-sky-300 mb-28"
+            onSubmit={handleSubmit(handleSearchCustomer)}
+          >
             <div className="flex flex-col gap-3">
               <Input
                 name="email"
