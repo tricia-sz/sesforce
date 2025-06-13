@@ -48,7 +48,7 @@ export default async function NewTicket() {
 
   return (
     <Container>
-      <main className="mt-9 mb-2">
+      <main className="mt-9 mb-26">
         <div className="flex items-center gap-3">
           <Link href="/dashboard" className="px-4 py-2  bg-sky-500 text-sky-950  font-bold rounded-full flex gap-2">
             <IoMdArrowBack size={24} className="" />
@@ -63,7 +63,7 @@ export default async function NewTicket() {
         >
           <label className="mb-2 font-medium text-lg">Título do chamado</label>
           <input
-            className="w-full border-2  border-sky-400 rounded-full px-2 mb-2 h-11"
+            className="w-full border-2  border-sky-400 rounded-full px-2 mb-2 h-11 placeholder:text-sky-600/70"
             type="text"
             placeholder="Digite o título do chamado"
             required
@@ -72,7 +72,7 @@ export default async function NewTicket() {
 
           <label className="mb-2 font-medium text-lg  rounded-full">Descreva o problema</label>
           <textarea
-            className="w-full border-2  border-sky-400 rounded-2xl px-2 mb-2 h-24 resize-none"
+            className="w-full border-2  border-sky-400 rounded-2xl px-2 mb-2 h-24 resize-none placeholder:text-sky-600/70"
             placeholder="Descreva o problema..."
             required
             name="description"
@@ -84,7 +84,7 @@ export default async function NewTicket() {
               <>
                 <label className="mb-2 font-medium text-lg rounded-full">Selecione o cliente</label>
                 <select
-                  className="w-full border-2 border-sky-400  rounded-full px-4 mb-2 h-11 resize-none"
+                  className="w-full border-2 border-sky-400  rounded-full px-4 mb-2 h-11 resize-none placeholder:text-sky-600/70"
                   name="customer"
 
                 >
@@ -113,7 +113,7 @@ export default async function NewTicket() {
 
         <button 
           type='submit'
-          className='py-2 w-64 bg-sky-500 font-bold text-2xl text-white rounded-full disabled:bg-gray-500 disabled:cursor-not-allowed items-center text-center self-center mt-6'
+          className='py-2 w-64 bg-sky-500 font-bold text-2xl text-sky-950 rounded-full disabled:bg-gray-500 disabled:cursor-not-allowed items-center text-center self-center mt-6'
           disabled={customers.length === 0}
         >
           Cadastrar
