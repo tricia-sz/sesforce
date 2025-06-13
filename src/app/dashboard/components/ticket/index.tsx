@@ -16,7 +16,7 @@ interface TicketItemProps {
 export function TicketItem({ customer, ticket }: TicketItemProps) {
   const router = useRouter();
 
-  const {handleModalVisible} = useContext(ModalContext)
+  const {handleModalVisible, setDetailTicket} = useContext(ModalContext)
 
   async function handleChangeStatus() {
     try {
@@ -32,7 +32,11 @@ export function TicketItem({ customer, ticket }: TicketItemProps) {
   }
 
   function handleOpenModal(){
-    handleModalVisible()
+    handleModalVisible();
+    setDetailTicket({
+      ticket: ticket,
+      customer: customer
+    })
   }
 
   return(
