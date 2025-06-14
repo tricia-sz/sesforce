@@ -27,7 +27,7 @@ export function ModalTicket() {
           </div>
 
           <div className="flex flex-wrap gap-1 mb-2">
-            <h2 className="font-bold">Nome:</h2>
+            <h2 className="font-bold">Título:</h2>
             <p>{ticket?.ticket.name}</p>
           </div>
 

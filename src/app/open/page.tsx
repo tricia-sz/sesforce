@@ -17,7 +17,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
-interface CustomerDataInfo {
+export interface CustomerDataInfo {
   id: string;
   name: string;
 }
@@ -43,7 +43,7 @@ export default function OpenTicket() {
     })
 
     if (response.data === null) {
-      setError("email", { type: "custom", message: "Ops, cliente não foi encontrado. O mesmo não está cadastrado em nossa base!" })
+      setError("email", { type: "custom", message: "Ops, cliente não foi encontrado. O mesmo não está cadastrado em nossa base." })
       return;
     }
 
@@ -83,7 +83,7 @@ export default function OpenTicket() {
               />
 
               <button 
-                className="bg-sky-500  flex flex-row gap-3 px-4 h-11 items-center justify-center rounded-full text-sky-950 font-bold self-center"
+                className="bg-sky-500  flex flex-row gap-3 px-2 h-11 items-center justify-center rounded-full text-sky-950 font-bold self-center"
                 type='submit'
                 >
                 Procurar cliente
@@ -93,7 +93,7 @@ export default function OpenTicket() {
           </form>
         )}
 
-        {customer !== null && <FormTicket />}
+        {customer !== null && <FormTicket customer={customer}/>}
 
 
       </main>

@@ -24,9 +24,9 @@ export default async function Customer(){
   return(
     <Container>
       <main className="mt-9 mb-26">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between" >
           <h1 className="text-3xl font-bold">Meus clientes</h1>
-          <Link href="/dashboard/customer/new" className="bg-sky-500 px-4 py-2 font-medium rounded-full flex gap-2">
+          <Link href="/dashboard/customer/new" className="bg-sky-500 px-2 py-2 font-medium rounded-full flex gap-2">
              <MdPersonAddAlt1 size={24}/>
              Novo Cliente
           </Link>

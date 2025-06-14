@@ -91,7 +91,7 @@ export function NewCustomerForm({userId}: {userId: string}) {
 
       <button
         type="submit"
-        className="bg-sky-500 my-8 px-4 h-11 rounded-full text-sky-950 font-bold w-2/12 self-center flex justify-center items-center gap-2"
+        className="w-64 bg-sky-500 my-8 h-11 rounded-full text-sky-950 font-bold self-center flex justify-center items-center gap-2"
       >
            <MdPersonAddAlt1 size={24}/>
         Cadastrar

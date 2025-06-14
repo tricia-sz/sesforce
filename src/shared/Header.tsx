@@ -10,6 +10,7 @@ import { TfiUnlock } from "react-icons/tfi";
 import { IoMdLogOut } from "react-icons/io";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
+import { DeashboardHeader } from "@/app/dashboard/components/header/header";
 
 export default function Header() {
   const { status, data } = useSession();
@@ -26,9 +27,9 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full flex items-center px-2 py-4 bg-sky-500  shadow-sm">
+      <header className="w-full flex items-center px-2 py-4 bg-sky-500  shadow-sm justify-center">
         <div className="w-full flex items-center justify-between max-w-7xl mx-auto">
-          <Link href={"/"}>
+          <Link href={"/"} className="hidden sm:table-cell">
             <Image
               alt="logo"
               src={logo}
@@ -36,7 +37,7 @@ export default function Header() {
               className=""
             />
           </Link>
-
+            
           {status === "loading" && (
             <button className="animate-spin">
               <FiLoader size={26} className="text-sky-950" />
@@ -44,14 +45,30 @@ export default function Header() {
           )}
 
           {status === "unauthenticated" && (
+            <>
+              <Link href={"/open"} >
+                <button
+                    className="flex bg-sky-100 gap-2 rounded-full  h-11 px-4 text-sky-950 font-bold mx-auto justify-center items-center self-center"
+                    type="submit"
+                  >
+                    <FaTicketAlt size={24} />
+                    Abrir Chamado
+                </button>
+            </Link>
             <button onClick={handleLogin} className="flex gap-2 bg-sky-100 px-4 py-2 rounded-full  items-center justify-center ">
               Entrar
               <TfiUnlock size={26} className="text-sky-950" />
             </button>
+            </>
+            
           )}
-
+            
           {status === "authenticated" && (
-            <div className="flex items-center gap-4">
+             <>
+              <div>
+                <DeashboardHeader />
+              </div>
+              <div className="flex items-center gap-4">
               <Link href={"/dashboard"} className="flex gap-2 items-center justify-center px-3 py-2 bg-sky-100 rounded-full font-medium">
                 {data.user?.name}
               </Link>
@@ -63,10 +80,12 @@ export default function Header() {
                 </Link>
               </button>
             </div>
+             </>
+            
           )}
 
-
         </div>
+       
       </header>
       <Image alt="shape" src={shapetop}  className="w-full"/>
     </>
