@@ -1,7 +1,7 @@
 # ☁️ SeSforce 👩🏽‍💻
 
 <div align="center">
-<img src="https://github.com/tricia-sz/trflix/blob/main/.gitassets/capa.png?raw=true" width="250" />
+<img src="https://raw.githubusercontent.com/tricia-sz/sesforce/3e660cadb480910d439860e6ea840f42621cd000/.gitassets/logo.svg" width="250" />
 
  <div data-badges>
   <img src="https://img.shields.io/github/stars/portfolio-projetos-dev/kino?style=for-the-badge" alt="GitHub stars" />
@@ -19,7 +19,7 @@
 </div>
 </div>
 
-TrfliX - Projeto teste consumindo API do TMDB para busca de filmes e séries
+SeSforce - Gerenciador de chamados com autenticação.
 
  # SITE EM PRODUÇÃO:
 
@@ -33,13 +33,13 @@ TrfliX - Projeto teste consumindo API do TMDB para busca de filmes e séries
 1. Clone este repositório:
 
    ```sh
-   git clone git@github.com:tricia-sz/trflix.git
+   git clone git@github.com:tricia-sz/sesforce.git
    ```
 
 2. Acesse o diretório do projeto:
 
    ```sh
-   cd trflix
+   cd sesforce
    ```
 
 
